@@ -41,6 +41,7 @@ public class AdventuresAdapter extends RecyclerView.Adapter<AdventuresAdapter.Vi
         Destination destination = destinationsList.get(position);
         holder.destinationName.setText(String.valueOf(destination.getName()));
         holder.destinationPrice.setText(destination.getPrice());
+        holder.destinationNights.setText(destination.getNights());
         holder.locationView.setText(destination.getCountry());
         Glide.with(destinationContext).load(destination.getImageUrl()).into(holder.destinationImage);
 
@@ -74,6 +75,7 @@ public class AdventuresAdapter extends RecyclerView.Adapter<AdventuresAdapter.Vi
             destinationName     = itemView.findViewById(R.id.destinationNameView);
             destinationImage    = itemView.findViewById(R.id.destinationImageView);
             destinationPrice    = itemView.findViewById(R.id.destinationPriceView);
+            destinationNights   = itemView.findViewById(R.id.destinationNightsView);
             locationView        = itemView.findViewById(R.id.locationView);
             discover            = itemView.findViewById(R.id.showMaps);
 
