@@ -33,7 +33,7 @@ public class Adventures extends AppCompatActivity implements ListenerInterface  
     private ArrayList<Destination> destinationsList;
     private AdventuresAdapter recyclerAdapter;
 
-    private ImageView backbtn, profile;
+    private ImageView backbtn;
     private EditText searchBar;
 
     private DatabaseReference database;
@@ -47,7 +47,6 @@ public class Adventures extends AppCompatActivity implements ListenerInterface  
         searchBar       = findViewById(R.id.searchBar);
         recyclerView    = findViewById(R.id.destinations);
         backbtn         = findViewById(R.id.imageButtonRecycle);
-        profile         = findViewById(R.id.profile);
         database        = FirebaseDatabase.getInstance().getReference("location");
 
         recyclerView.setHasFixedSize(true);
@@ -63,13 +62,7 @@ public class Adventures extends AppCompatActivity implements ListenerInterface  
                 startActivity(intent);
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Adventures.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,12 +110,9 @@ public class Adventures extends AppCompatActivity implements ListenerInterface  
         intent.putExtra("Host",         destinationsList.get(position).getHost());
         intent.putExtra("Description",  destinationsList.get(position).getDescription());
         intent.putExtra("Image",        destinationsList.get(position).getImageUrl());
-        intent.putExtra("Country",      destinationsList.get(position).getCountry());
         intent.putExtra("Price",        destinationsList.get(position).getPrice());
         intent.putExtra("Nights",       destinationsList.get(position).getNights());
         intent.putExtra("People",       destinationsList.get(position).getPeople());
-        intent.putExtra("Latitude",     destinationsList.get(position).getLatitude());
-        intent.putExtra("Longitude",    destinationsList.get(position).getLongitude());
         startActivity(intent);
         finish();
     }
